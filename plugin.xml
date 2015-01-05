@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" 
+	id="org.pluginporo.honeywell_scanner_plugin" 
+	version="0.0.5">
+
+	<name>Honeywell Barcode Scanner Plugin</name>
+	<description>Honeywell Barcode Scanner Plugin</description>
+	<license>Apache 2.0</license>
+	<keywords>cordova, honeywell, dolphin, scanner, plugin</keywords>
+
+	<js-module src="www/honeywell_scanner_plugin.js" name="HoneywellScannerPlugin">
+		<clobbers target="navigator.honeywell_scanner_plugin" />
+	</js-module>
+
+	<!-- android -->
+	<platform name="android">
+		<config-file target="AndroidManifest.xml" parent="/*">
+			<uses-permission android:name="android.permission.CAMERA" />
+			<uses-permission android:name="android.permission.FLASHLIGHT" />
+			<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+			<uses-permission android:name="android.permission.INTERNET" />
+			<uses-permission android:name="android.permission.READ_LOGS" />
+			<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+			<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+			<uses-permission android:name="android.permission.VIBRATE" />
+			<uses-permission android:name="android.permission.NFC" />
+
+			<uses-feature android:name="android.hardware.camera" />
+			<uses-feature android:name="android.hardware.camera.autofocus" android:required="false" />
+			<uses-feature android:name="android.hardware.camera.flash" android:required="false" />
+		</config-file>
+
+		<config-file target="res/xml/config.xml" parent="/*">
+			<feature name="BarcodeScannerPlugin">
+				<param name="android-package" value="org.pluginporo.honeywell.BarcodeScannerPlugin" />
+			</feature>
+		</config-file>
+
+		<source-file src="src/android/libs/gson-2.2.4.jar" target-dir="libs" />
+		<source-file src="src/android/libs/honeywell.jar" target-dir="libs" />
+
+		<source-file src="src/android/aamva/Decoder.java" target-dir="src/org/pluginporo/aamva" />
+		<source-file src="src/android/aamva/DriverLicense.java" target-dir="src/org/pluginporo/aamva" />
+		<source-file src="src/android/BarcodeScannerPlugin.java" target-dir="src/org/pluginporo/honeywell" />
+	</platform>
+
+</plugin>
